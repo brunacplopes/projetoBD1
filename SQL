@@ -1,0 +1,162 @@
+/* Lógico_1: */
+
+CREATE TABLE Pessoa (
+    Nome VARCHAR,
+    Endereco VARCHAR,
+    Email VARCHAR,
+    CPF VARCHAR PRIMARY KEY,
+    DT_Nascimento DATE
+);
+
+CREATE TABLE Medico (
+    CRM VARCHAR,
+    Especialidade VARCHAR,
+    fk_Pessoa_CPF VARCHAR,
+    PRIMARY KEY (CRM, fk_Pessoa_CPF)
+);
+
+CREATE TABLE Paciente (
+    Caso VARCHAR,
+    ID_Paciente VARCHAR,
+    fk_Pessoa_CPF VARCHAR,
+    PRIMARY KEY (ID_Paciente, fk_Pessoa_CPF)
+);
+
+CREATE TABLE Ent__Consulta_Consulta (
+    fk_Medico_CRM VARCHAR,
+    fk_Medico_fk_Pessoa_CPF VARCHAR,
+    fk_Paciente_ID_Paciente VARCHAR,
+    fk_Paciente_fk_Pessoa_CPF VARCHAR,
+    Sala INT,
+    Data DATE PRIMARY KEY
+);
+
+CREATE TABLE Cliente (
+    ID_Cliente VARCHAR,
+    fk_Pessoa_CPF VARCHAR,
+    PRIMARY KEY (ID_Cliente, fk_Pessoa_CPF)
+);
+
+CREATE TABLE Pedido (
+    ID_Pedido VARCHAR PRIMARY KEY,
+    Preco_t FLOAT,
+    Delivery BOOLEAN,
+    fk_Data_Data_PK DATE
+);
+
+CREATE TABLE Item (
+    ID_Item VARCHAR PRIMARY KEY,
+    Preco_Item FLOAT,
+    Nome_Item VARCHAR
+);
+
+CREATE TABLE Participante (
+    fk_Pessoa_CPF VARCHAR PRIMARY KEY,
+    Nome VARCHAR
+);
+
+CREATE TABLE E_Assoc_1_Inscricao (
+    fk_Evento_Data_Evento DATE,
+    fk_Participante_fk_Pessoa_CPF VARCHAR,
+    ID_Inscricao VARCHAR PRIMARY KEY,
+    Contagem INT
+);
+
+CREATE TABLE Evento (
+    Nome_Evento VARCHAR,
+    Data_Evento DATE PRIMARY KEY,
+    Online BOOLEAN,
+    fk_Local_ID_Local VARCHAR
+);
+
+CREATE TABLE Local (
+    Capacidade INT,
+    ID_Local VARCHAR PRIMARY KEY
+);
+
+CREATE TABLE Data (
+    Data_PK DATE NOT NULL PRIMARY KEY,
+    Dia VARCHAR,
+    Hora TIME
+);
+
+CREATE TABLE Realiza (
+    fk_Cliente_ID_Cliente VARCHAR,
+    fk_Cliente_fk_Pessoa_CPF VARCHAR,
+    fk_Pedido_ID_Pedido VARCHAR
+);
+
+CREATE TABLE Contem (
+    fk_Pedido_ID_Pedido VARCHAR,
+    fk_Item_ID_Item VARCHAR
+);
+ 
+ALTER TABLE Medico ADD CONSTRAINT FK_Medico_2
+    FOREIGN KEY (fk_Pessoa_CPF)
+    REFERENCES Pessoa (CPF)
+    ON DELETE CASCADE;
+ 
+ALTER TABLE Paciente ADD CONSTRAINT FK_Paciente_2
+    FOREIGN KEY (fk_Pessoa_CPF)
+    REFERENCES Pessoa (CPF)
+    ON DELETE CASCADE;
+ 
+ALTER TABLE Ent_Consulta_Consulta ADD CONSTRAINT FK_Ent_Consulta_Consulta_2
+    FOREIGN KEY (fk_Medico_CRM, fk_Medico_fk_Pessoa_CPF)
+    REFERENCES Medico (CRM, fk_Pessoa_CPF);
+ 
+ALTER TABLE Ent_Consulta_Consulta ADD CONSTRAINT FK_Ent_Consulta_Consulta_3
+    FOREIGN KEY (fk_Paciente_ID_Paciente, fk_Paciente_fk_Pessoa_CPF)
+    REFERENCES Paciente (ID_Paciente, fk_Pessoa_CPF);
+ 
+ALTER TABLE Cliente ADD CONSTRAINT FK_Cliente_2
+    FOREIGN KEY (fk_Pessoa_CPF)
+    REFERENCES Pessoa (CPF)
+    ON DELETE CASCADE;
+ 
+ALTER TABLE Pedido ADD CONSTRAINT FK_Pedido_2
+    FOREIGN KEY (fk_Data_Data_PK)
+    REFERENCES Data (Data_PK)
+    ON DELETE SET NULL;
+ 
+ALTER TABLE Participante ADD CONSTRAINT FK_Participante_2
+    FOREIGN KEY (fk_Pessoa_CPF)
+    REFERENCES Pessoa (CPF)
+    ON DELETE CASCADE;
+ 
+ALTER TABLE Participante ADD CONSTRAINT FK_Participante_3
+    FOREIGN KEY (Nome???)
+    REFERENCES ??? (???);
+ 
+ALTER TABLE E_Assoc1_Inscricao ADD CONSTRAINT FK_EAssoc_1_Inscricao_2
+    FOREIGN KEY (fk_Evento_Data_Evento)
+    REFERENCES Evento (Data_Evento);
+ 
+ALTER TABLE E_Assoc1_Inscricao ADD CONSTRAINT FK_EAssoc_1_Inscricao_3
+    FOREIGN KEY (fk_Participante_fk_Pessoa_CPF)
+    REFERENCES Participante (fk_Pessoa_CPF);
+ 
+ALTER TABLE Evento ADD CONSTRAINT FK_Evento_2
+    FOREIGN KEY (fk_Local_ID_Local)
+    REFERENCES Local (ID_Local)
+    ON DELETE SET NULL;
+ 
+ALTER TABLE Realiza ADD CONSTRAINT FK_Realiza_1
+    FOREIGN KEY (fk_Cliente_ID_Cliente, fk_Cliente_fk_Pessoa_CPF)
+    REFERENCES Cliente (ID_Cliente, fk_Pessoa_CPF)
+    ON DELETE RESTRICT;
+ 
+ALTER TABLE Realiza ADD CONSTRAINT FK_Realiza_2
+    FOREIGN KEY (fk_Pedido_ID_Pedido)
+    REFERENCES Pedido (ID_Pedido)
+    ON DELETE RESTRICT;
+ 
+ALTER TABLE Contem ADD CONSTRAINT FK_Contem_1
+    FOREIGN KEY (fk_Pedido_ID_Pedido)
+    REFERENCES Pedido (ID_Pedido)
+    ON DELETE RESTRICT;
+ 
+ALTER TABLE Contem ADD CONSTRAINT FK_Contem_2
+    FOREIGN KEY (fk_Item_ID_Item)
+    REFERENCES Item (ID_Item)
+    ON DELETE RESTRICT;
