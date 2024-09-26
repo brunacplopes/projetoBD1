@@ -1,4 +1,4 @@
-# Projeto Banco de Dados 1 - Clínica Equilibrium
+# Projeto Banco de Dados 1 - Modelo Relacional - Clínica Equilibrium
 Criamos um banco de dados unificado para uma cliníca fictícia de reabilitação e apoio emocional. A tarefa principal era unir 3 sistemas: Clínica, Restaurante, Evento,então criamos a Equilibrium. A clínica se baseia em realizar eventos para os pacientes como aulas de yoga, meditação e até culinária. 
 # Nosso manifesto
 "Através de um banco de dados unificado, administramos consultas médicas, atendimentos personalizados e eventos, criando uma rede fluida que facilita o cuidado contínuo dos pacientes. Nosso foco é especial para pacientes psiquiátricos, que podem se beneficiar de um ambiente hospitalar mais acolhedor e interativo. Através de atividades educativas, refeições personalizadas no restaurante e eventos terapêuticos, incentivamos a recuperação emocional e social.
