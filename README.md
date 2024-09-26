@@ -30,5 +30,5 @@ Objetivo: Avaliar a relação entre a capacidade do local e a quantidade de pess
 
 # Toque final
 Montamos nosso logotipo, com tons pastéis brancos e azuis para referir a paz e tranquilidade.
-![_e2e66f5f-f6de-401e-bf07-c87a8e32f614](https://github.com/user-attachments/assets/4088c15f-67e9-46db-8ab1-65d6590bfcd9)
-
+![_e2e66f5f-f6de-401e-bf07-c87a8e32f614](https://github.com/user-attachments/assets/4088c15f-67e9-46db-8ab1-65d6590bfcd9)  
+Esse trabalho foi feito por: Adele Brovelli, Bruna Lopes, Maria Eduarda Carvalho e Sérgio Melo
