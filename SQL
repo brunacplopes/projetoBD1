@@ -90,7 +90,7 @@ CREATE TABLE Data (
   Hora TIME
 );
 
-CREATE TABLE Realiza (
+CREATE TABLE RealizaPedido (
   fk_Cliente_ID_Cliente VARCHAR(255),
   fk_Cliente_fk_Pessoa_CPF VARCHAR(11),
   fk_Pedido_ID_Pedido VARCHAR(255),
@@ -105,74 +105,145 @@ CREATE TABLE Contem (
   FOREIGN KEY (fk_Item_ID_Item) REFERENCES Item (ID_Item) ON DELETE RESTRICT
 );
 
--- Inserindo em Pessoa
+-- 20 pessoas
 INSERT INTO Pessoa (Nome, Endereco, Email, CPF, DT_Nascimento)
-VALUES ('Carlos Silva', 'Rua A, 123', 'carlos@example.com', '12345678901', '1980-05-15'),
-       ('Ana Pereira', 'Rua B, 456', 'ana@example.com', '10987654321', '1990-08-10');
+VALUES 
+       ('Carlos Silva', 'Rua A, 123', 'carlos@example.com', '12345678901', '1980-05-15'),
+       ('Ana Pereira', 'Rua B, 456', 'ana@example.com', '10987654321', '1990-08-10'),
+       ('Mariana Santos', 'Rua C, 789', 'mariana@example.com', '12312312301', '1975-03-23'),
+       ('Fernando Oliveira', 'Rua D, 101', 'fernando@example.com', '23123123102', '1985-11-17'),
+       ('Paula Souza', 'Rua E, 202', 'paula@example.com', '32132132103', '1992-04-29'),
+       ('Gabriel Lima', 'Rua F, 303', 'gabriel@example.com', '43243243204', '1978-06-19'),
+       ('Juliana Rocha', 'Rua G, 404', 'juliana@example.com', '54354354305', '1993-09-11'),
+       ('Felipe Almeida', 'Rua H, 505', 'felipe@example.com', '65465465406', '1987-07-15'),
+       ('Isabela Fernandes', 'Rua I, 606', 'isabela@example.com', '76576576507', '1981-12-22'),
+       ('Lucas Costa', 'Rua J, 707', 'lucas@example.com', '87687687608', '1994-08-05'),
+       ('Renata Moreira', 'Rua K, 808', 'renata@example.com', '98798798709', '1989-02-02'),
+       ('Ricardo Silva', 'Rua L, 909', 'ricardo@example.com', '09809809810', '1995-05-01'),
+       ('Amanda Cardoso', 'Rua M, 1010', 'amanda@example.com', '10910910911', '1984-11-27'),
+       ('Victor Azevedo', 'Rua N, 1111', 'victor@example.com', '21021021012', '1991-03-13'),
+       ('Patricia Ribeiro', 'Rua O, 1212', 'patricia@example.com', '32132132113', '1980-01-18'),
+       ('Bruno Gomes', 'Rua P, 1313', 'bruno@example.com', '43243243214', '1983-06-25'),
+       ('Thiago Martins', 'Rua Q, 1414', 'thiago@example.com', '54354354315', '1988-10-10'),
+       ('Carla Costa', 'Rua R, 1515', 'carla@example.com', '65465465416', '1977-12-30'),
+       ('Joana Dantas', 'Rua S, 1616', 'joana@example.com', '76576576517', '1996-09-09'),
+       ('André Barreto', 'Rua T, 1717', 'andre@example.com', '87687687618', '1982-07-07');
 
--- Inserindo em Medico
+-- Inserindo médicos
 INSERT INTO Medico (CRM, Especialidade, fk_Pessoa_CPF)
-VALUES ('CRM12345', 'Cardiologia', '12345678901');
+VALUES 
+       ('CRM12345', 'Psiquiatria', '12345678901'), 
+       ('CRM67890', 'Psicologia Clínica', '12312312301'),
+       ('CRM23456', 'Psiquiatria', '32132132103'),
+       ('CRM34567', 'Terapia Familiar', '65465465406'),
+       ('CRM45678', 'Psicopedagogia', '87687687608'),
+       ('CRM56789', 'Neuropsicologia', '76576576507'),
+       ('CRM67891', 'Terapia Ocupacional', '09809809810');
 
--- Inserindo em Paciente
+-- entidade paciente 
 INSERT INTO Paciente (Caso, ID_Paciente, fk_Pessoa_CPF)
-VALUES ('Depressão', 'PAC001', '10987654321');
+VALUES 
+       ('Depressão Major', 'PAC001', '10987654321'),
+       ('Ansiedade Generalizada', 'PAC002', '23123123102'),
+       ('Depressão Major', 'PAC003', '54354354305'),
+       ('Transtorno Bipolar', 'PAC004', '76576576517'),
+       ('Transtorno de Estresse Pós-Traumático', 'PAC005', '98798798709'),
+       ('Fobia Social', 'PAC006', '10910910911'),
+       ('Transtorno Obsessivo-Compulsivo', 'PAC007', '21021021012'),
+       ('Transtorno de Personalidade Borderline', 'PAC008', '43243243214'),
+       ('Esquizofrenia', 'PAC009', '54354354315'),
+       ('Transtorno de Déficit de Atenção e Hiperatividade', 'PAC010', '65465465416');
 
--- Inserindo em Cliente
+-- entidade cliente
 INSERT INTO Cliente (ID_Cliente, fk_Pessoa_CPF)
-VALUES ('CLI001', '10987654321');
+VALUES 
+       ('CLI001', '10987654321'),
+       ('CLI002', '23123123102'),
+       ('CLI003', '54354354305'),
+       ('CLI004', '98798798709'),
+       ('CLI005', '10910910911'),
+       ('CLI006', '21021021012'),
+       ('CLI007', '43243243214');
 
--- Inserindo em Data
-INSERT INTO Data (Data_PK, Dia, Hora)
-VALUES ('2024-01-01', 'Segunda', '09:00:00');
-
--- Inserindo em Pedido
+-- entidade pedido
 INSERT INTO Pedido (ID_Pedido, Preco_t, Delivery, fk_Data_Data_PK)
-VALUES ('PED001', 250.00, TRUE, '2024-01-01');
+VALUES 
+       ('PED001', 250.00, TRUE, '2024-01-01'),
+       ('PED002', 150.00, FALSE, '2024-01-01'),
+       ('PED003', 300.00, TRUE, '2024-01-01'),
+       ('PED004', 120.00, FALSE, '2024-01-01'),
+       ('PED005', 180.00, TRUE, '2024-01-01');
 
--- Inserindo em Item
+-- entidade item
 INSERT INTO Item (ID_Item, Preco_Item, Nome_Item)
-VALUES ('IT001', 25.00, 'Pizza'), 
+VALUES 
+       ('IT001', 25.00, 'Pizza'), 
        ('IT002', 15.00, 'Salada');
 
--- Inserindo em Contem
+-- entidade contém(q seria o conteúdo do pedido)
 INSERT INTO Contem (fk_Pedido_ID_Pedido, fk_Item_ID_Item)
-VALUES ('PED001', 'IT001'),
+VALUES 
+       ('PED001', 'IT001'),
        ('PED001', 'IT002');
 
--- Inserindo em Local
+-- entidade local para eventos
 INSERT INTO Local (Capacidade, ID_Local)
 VALUES (100, 'LOC001');
 
--- Inserindo em Evento
+-- entidade eventos
 INSERT INTO Evento (Nome_Evento, Data_Evento, Online, fk_Local_ID_Local)
-VALUES ('Yoga', '2024-03-10', FALSE, 'LOC001');
+VALUES 
+       ('Yoga', '2024-03-10', FALSE, 'LOC001'),
+       ('Meditação e Controle de Ansiedade', '2024-05-15', TRUE, 'LOC001'),
+       ('Grupo de Apoio para Depressão', '2024-06-20', FALSE, 'LOC001');
 
--- Inserindo em Participante
+-- entidade participante (as pessoas dos eventos)
 INSERT INTO Participante (fk_Pessoa_CPF, Nome)
-VALUES ('10987654321', 'Ana Pereira'), ('12345678901', 'Carlos Silva');
+VALUES 
+       ('10987654321', 'Ana Pereira'),
+       ('12345678901', 'Carlos Silva'),
+       ('12312312301', 'Mariana Santos'),
+       ('23123123102', 'Fernando Oliveira'),
+       ('32132132103', 'Paula Souza'),
+       ('54354354305', 'Juliana Rocha'),
+       ('98798798709', 'Ricardo Silva'),
+       ('10910910911', 'Amanda Cardoso');
 
--- Inserindo em E_Assoc1_Inscricao
-INSERT INTO E_Assoc1_Inscricao (fk_Evento_Data_Evento, fk_Participante_fk_Pessoa_CPF, ID_Inscricao, Contagem, Frequencia, Satisfacao)
-VALUES ('2024-03-10', '10987654321', 'INS001', 1, TRUE, 5), (2024-03-10, '12345678901', 'INS002', 2, TRUE, 5);
+-- entidade inscrição (as insc dos eventos) 
+INSERT INTO E_Assoc1_Inscricao (fk_Evento_Data_Evento, fk_Participante_fk_Pessoa_CPF, ID_Inscricao, Frequencia, Satisfacao)
+VALUES 
+       ('2024-03-10', '10987654321', 'INS001', TRUE, 5), 
+       ('2024-03-10', '12345678901', 'INS002', TRUE, 5),
+       ('2024-05-15', '12312312301', 'INS003', TRUE, 4),
+       ('2024-05-15', '23123123102', 'INS004', TRUE, 5),
+       ('2024-06-20', '32132132103', 'INS005', TRUE, 3),
+       ('2024-06-20', '54354354305', 'INS006', TRUE, 4),
+       ('2024-06-20', '98798798709', 'INS007', TRUE, 5),
+       ('2024-05-15', '10910910911', 'INS008', TRUE, 4);
 
--- Inserindo em Ent_Consulta_Consulta
+-- entidade consultas médicas(seria o agendamento)
 INSERT INTO Ent_Consulta_Consulta (fk_Medico_CRM, fk_Medico_fk_Pessoa_CPF, fk_Paciente_ID_Paciente, fk_Paciente_fk_Pessoa_CPF, Sala, Data)
-VALUES ('CRM12345', '12345678901', 'PAC001', '10987654321', 1, '2024-02-20');
+VALUES 
+       ('CRM12345', '12345678901', 'PAC001', '10987654321', 1, '2024-02-20');
 
--- Inserindo em Realiza
-INSERT INTO Realiza (fk_Cliente_ID_Cliente, fk_Cliente_fk_Pessoa_CPF, fk_Pedido_ID_Pedido)
-VALUES ('CLI001', '10987654321', 'PED001');
+-- entidade realiza (realizações de pedidos, na hora que o cliente pede)
+INSERT INTO RealizaPedido (fk_Cliente_ID_Cliente, fk_Cliente_fk_Pessoa_CPF, fk_Pedido_ID_Pedido)
+VALUES 
+       ('CLI001', '10987654321', 'PED001'),
+       ('CLI002', '23123123102', 'PED002');
+
 
 SELECT COUNT(*) AS total_Pessoas 
 FROM Pessoa;
 
-SELECT COUNT(*) AS total_depres FROM Paciente WHERE Caso IS 'Depressão';
-
-SELECT COUNT(*) AS satisfeitos FROM E_Assoc1_Inscricao WHERE Satisfacao > 4;
--- os pacientes estão satisfeitos com a clínica?
-SELECT capacidade - contagem AS capacidade_restante FROM Local, E_Assoc1_Inscricao WHERE ID_Local = 'LOC001';
--- os pacientes realmente frequentam os eventos?
+-- quão o percentual de inscritos que realmente foram aos últimos eventos? isso mostra uma assiduidade dos inscritos.
+SELECT 
+    (SELECT COUNT(*) FROM E_Assoc1_Inscricao WHERE Frequencia = TRUE) * 100.0 / 
+    (SELECT COUNT(*) FROM E_Assoc1_Inscricao) AS porcentagem_frequencia_true;
+-- qual o  % de pacientes satisfeitos com os eventos da clínica? isso tem tudo a ver com a pergunta 1
+SELECT 
+    (SELECT COUNT(*) AS satisfeitos FROM E_Assoc1_Inscricao WHERE Satisfacao >= 4) * 100.0 / 
+    (SELECT COUNT(*) AS total_inscritos FROM E_Assoc1_Inscricao) AS porcentagem_satisfacao;
 -- taxa de sucesso/retencao
 -- quantos médicos da florence são especializados em casos mais raros?
 -- qual o impacto dos eventos e campanhas no aumento de pedidos (colocar pacientes que frequentam mtos eventos como os q mais pedem e consultam
