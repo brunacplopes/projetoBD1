@@ -10,25 +10,36 @@ Os pacientes com condições psiquiátricas muitas vezes precisam de estímulos 
 # Modelo MR
 <img width="814" alt="Captura de Tela 2024-09-25 às 22 56 06" src="https://github.com/user-attachments/assets/8d57e55d-9907-48db-9b82-495159a07ef7">
 
-# 5 perguntas
-O projeto requeriu que fizéssemos 5 perguntas que agreguem valor à equipe baseados no SGBD. Foram elas: 
+# 10 perguntas
+O projeto requeriu que fizéssemos 10 perguntas que agreguem valor à equipe baseados no banco de dados. Foram elas: 
 
-Qual o dia e horário mais adequado para realizar atividades e eventos para os pacientes?
-Objetivo: Identificar o momento preferido pelos pacientes para participar de atividades (educativas, lúdicas ou terapêuticas), considerando os padrões de adesão em diferentes dias e horários. Isso permitirá a maximização do engajamento, além de garantir que as atividades sejam realizadas nos períodos em que os pacientes estão mais dispostos, otimizando recursos e promovendo maior bem-estar emocional e social.
+1 Qual o percentual de inscritos que realmente foram aos últimos eventos? isso mostra uma assiduidade dos inscritos.
 
-Qual é o item do cardápio mais solicitado pelos pacientes?
-Objetivo: Monitorar o item alimentar mais popular entre os pacientes, permitindo ajustes no cardápio para melhor atender às preferências, garantir uma alimentação balanceada e otimizar a gestão de estoque.
+2 qual o  % de pacientes satisfeitos com os eventos da clínica? isso tem tudo a ver com a pergunta 1
 
-Qual tipo de evento possui a maior demanda entre os pacientes?
-Objetivo: Analisar a preferência dos pacientes entre diferentes atividades (educativas, lúdicas ou terapêuticas), facilitando a alocação de recursos e o planejamento de atividades que promovam o engajamento e o bem-estar emocional, além de modalidade online ou presencial, para os pacientes que não possam ou consigam sair dos quartos.
+3 qual o % de médicos muito satisfeitos com o local de trabalho? isso mostra que a clínica é um bom local de trabalho para os funcionários 
 
-Quais são os casos mais frequentes atendidos no hospital?
-Objetivo: Identificar padrões de atendimento, permitindo a contratação de especialistas e ajuste de recursos conforme a necessidade de cada especialidade médica mais demandada.
+4 Qual é o período do ano com maior número de inscrições nos eventos
 
-Como a capacidade dos eventos se compara à quantidade de participantes?
-Objetivo: Avaliar a relação entre a capacidade do local e a quantidade de pessoas nos eventos, para garantir que os locais escolhidos atendam confortavelmente os participantes ou planejar mudanças de local quando necessário.
+5 Qual o gasto médio no restaurante por pedido?
 
+6 Quais são tipos de casos são mais comuns entre os pacientes? Conhecer os tipos de casos permite criar eventos e serviços direcionados, oferecendo um atendimento mais personalizado.
+
+7 Quais especialidades médicas têm a maior demanda de consultas? Identificar as especialidades mais procuradas ajuda a entender a demanda e pode ser útil para promover consultas ou oferecer pacotes de serviços.
+
+8 Os eventos influenciam nos aumento de pedidos? Análise de Vendas Durante e Após Eventos Compare as vendas (pedidos) realizadas antes, durante e depois dos eventos. Isso ajuda a identificar picos de vendas associados aos eventos.
+ 
+# Atributos adicionados 
+• satisfacao_Medico(serve pra armazenar a pesquisa de satisfacao se os medicos gostam de trabalhar la c uma nota média de 1 a 5)
+•Frequencia(booleano que guarda se o inscrito esteve presente ou não através do escaneamento do ingresso
+•satisfacao_Participante(guarda se o inscrito gostou do evento dando uma nota de 1 a 5)
 # Toque final
 Montamos nosso logotipo, com tons pastéis brancos e azuis para referir a paz e tranquilidade.
 ![_e2e66f5f-f6de-401e-bf07-c87a8e32f614](https://github.com/user-attachments/assets/4088c15f-67e9-46db-8ab1-65d6590bfcd9)  
 Esse trabalho foi feito por: Adele Brovelli, Bruna Lopes, Maria Eduarda Carvalho e Sérgio Melo
+ 
+# divisão entre o grupo 
+Adele Brovelli: testes dos codigos 
+Bruna Lopes: github e slides
+Maria Eduarda Carvalho: perguntas
+Sérgio Melo: diferencial. 
