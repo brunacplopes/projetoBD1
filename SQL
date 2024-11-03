@@ -10,6 +10,7 @@ CREATE TABLE Medico (
   CRM VARCHAR(8),
   Especialidade VARCHAR(255),
   fk_Pessoa_CPF VARCHAR(11),
+  satisfacao_Medico INT(5),
   PRIMARY KEY (CRM, fk_Pessoa_CPF),
   FOREIGN KEY (fk_Pessoa_CPF) REFERENCES Pessoa (CPF) ON DELETE CASCADE
 );
@@ -60,13 +61,12 @@ CREATE TABLE Participante (
   FOREIGN KEY (fk_Pessoa_CPF) REFERENCES Pessoa (CPF) ON DELETE CASCADE
 );
 
-CREATE TABLE E_Assoc1_Inscricao (
+CREATE TABLE E_Assoc_Inscricao (
   fk_Evento_Data_Evento DATE,
   fk_Participante_fk_Pessoa_CPF VARCHAR(11),
   ID_Inscricao VARCHAR(255) PRIMARY KEY,
-  Contagem INT(10),
   Frequencia BOOLEAN,
-  Satisfacao INT(5),
+  satisfacao_Inscrito INT(5),
   FOREIGN KEY (fk_Evento_Data_Evento) REFERENCES Evento (Data_Evento),
   FOREIGN KEY (fk_Participante_fk_Pessoa_CPF) REFERENCES Participante (fk_Pessoa_CPF)
 );
@@ -130,15 +130,15 @@ VALUES
        ('André Barreto', 'Rua T, 1717', 'andre@example.com', '87687687618', '1982-07-07');
 
 -- Inserindo médicos
-INSERT INTO Medico (CRM, Especialidade, fk_Pessoa_CPF)
+INSERT INTO Medico (CRM, Especialidade, fk_Pessoa_CPF, satisfacao_Medico)
 VALUES 
-       ('CRM12345', 'Psiquiatria', '12345678901'), 
-       ('CRM67890', 'Psicologia Clínica', '12312312301'),
-       ('CRM23456', 'Psiquiatria', '32132132103'),
-       ('CRM34567', 'Terapia Familiar', '65465465406'),
-       ('CRM45678', 'Psicopedagogia', '87687687608'),
-       ('CRM56789', 'Neuropsicologia', '76576576507'),
-       ('CRM67891', 'Terapia Ocupacional', '09809809810');
+       ('CRM12345', 'Psiquiatria', '12345678901', 4), 
+       ('CRM67890', 'Psicologia Clínica', '12312312301', 5),
+       ('CRM23456', 'Psiquiatria', '32132132103', 5),
+       ('CRM34567', 'Terapia Familiar', '65465465406', 3),
+       ('CRM45678', 'Psicopedagogia', '87687687608', 4),
+       ('CRM56789', 'Neuropsicologia', '76576576507', 5),
+       ('CRM67891', 'Terapia Ocupacional', '09809809810', 5);
 
 -- entidade paciente 
 INSERT INTO Paciente (Caso, ID_Paciente, fk_Pessoa_CPF)
@@ -168,23 +168,29 @@ VALUES
 -- entidade pedido
 INSERT INTO Pedido (ID_Pedido, Preco_t, Delivery, fk_Data_Data_PK)
 VALUES 
-       ('PED001', 250.00, TRUE, '2024-01-01'),
-       ('PED002', 150.00, FALSE, '2024-01-01'),
-       ('PED003', 300.00, TRUE, '2024-01-01'),
-       ('PED004', 120.00, FALSE, '2024-01-01'),
-       ('PED005', 180.00, TRUE, '2024-01-01');
+       ('PED001', 250.00, TRUE, '2024-02-02'),
+       ('PED002', 150.00, FALSE, '2024-07-03'),
+       ('PED003', 300.00, TRUE, '2024-04-15'),
+       ('PED004', 120.00, FALSE, '2024-01-05'),
+       ('PED005', 180.00, TRUE, '2024-05-27');
 
 -- entidade item
 INSERT INTO Item (ID_Item, Preco_Item, Nome_Item)
 VALUES 
-       ('IT001', 25.00, 'Pizza'), 
-       ('IT002', 15.00, 'Salada');
+       ('IT001', 25.00, 'Pizza Saudável'), 
+       ('IT002', 15.00, 'Salada'),
+       ('IT003', 30.00, 'Hambúrguer Light'),
+       ('IT004', 8.00, 'Refrigerante de Gengibre'),    
+       ('IT005', 10.00, 'Suco Natural'),
+       ('IT006', 20.00, 'Sorvete de Banana');
 
 -- entidade contém(q seria o conteúdo do pedido)
 INSERT INTO Contem (fk_Pedido_ID_Pedido, fk_Item_ID_Item)
 VALUES 
-       ('PED001', 'IT001'),
-       ('PED001', 'IT002');
+       ('PED001', 'IT003'),
+       ('PED001', 'IT002'),
+       ('PED002', 'IT002'),
+       ('PED002', 'IT005');
 
 -- entidade local para eventos
 INSERT INTO Local (Capacidade, ID_Local)
@@ -210,7 +216,7 @@ VALUES
        ('10910910911', 'Amanda Cardoso');
 
 -- entidade inscrição (as insc dos eventos) 
-INSERT INTO E_Assoc1_Inscricao (fk_Evento_Data_Evento, fk_Participante_fk_Pessoa_CPF, ID_Inscricao, Frequencia, Satisfacao)
+INSERT INTO E_Assoc_Inscricao (fk_Evento_Data_Evento, fk_Participante_fk_Pessoa_CPF, ID_Inscricao, Frequencia, satisfacao_Inscrito)
 VALUES 
        ('2024-03-10', '10987654321', 'INS001', TRUE, 5), 
        ('2024-03-10', '12345678901', 'INS002', TRUE, 5),
@@ -232,18 +238,39 @@ VALUES
        ('CLI001', '10987654321', 'PED001'),
        ('CLI002', '23123123102', 'PED002');
 
-
 SELECT COUNT(*) AS total_Pessoas 
 FROM Pessoa;
+-- PORQUE ESCOLHER A FLORENCE ->
+-- 1 Qual o percentual de inscritos que realmente foram aos últimos eventos? isso mostra uma assiduidade dos inscritos.
+SELECT 
+    (SELECT COUNT(*) FROM E_Assoc_Inscricao WHERE Frequencia = TRUE) * 100.0 / 
+    (SELECT COUNT(*) FROM E_Assoc_Inscricao) AS porcentagem_frequencia_true;
+-- 2 qual o  % de pacientes satisfeitos com os eventos da clínica? isso tem tudo a ver com a pergunta 1
+SELECT 
+    (SELECT COUNT(*) AS satisfeitos FROM E_Assoc_Inscricao WHERE satisfacao_Inscrito >= 4) * 100.0 / 
+    (SELECT COUNT(*) AS total_inscritos FROM E_Assoc_Inscricao) AS porcentagem_satisfacao_inscritos;
+-- 3 qual o % de médicos muito satisfeitos com o local de trabalho? isso mostra que a clínica é um bom local de trabalho para os funcionários 
+SELECT 
+    (SELECT COUNT(*) AS satisfeitos FROM Medico WHERE satisfacao_Medico >= 4) * 100.0 / 
+    (SELECT COUNT(*) AS total_Medicos FROM Medico) AS porcentagem_satisfacao_medicos;
+-- NOSSO MARKETING E ESTRATÉGIAS
+-- 4 Qual é o período do ano com maior número de inscrições nos eventos
+SELECT strftime('%m', fk_Evento_Data_Evento) AS Mes,
+    COUNT(*) AS total_Inscricoes
+    FROM E_Assoc_Inscricao
+    GROUP BY Mes;
+-- 5 Qual o gasto médio no restaurante por pedido?
+SELECT AVG(Preco_t) AS Media_Preco FROM Pedido;
 
--- quão o percentual de inscritos que realmente foram aos últimos eventos? isso mostra uma assiduidade dos inscritos.
+-- 6 Quais são tipos de casos são mais comuns entre os pacientes? Conhecer os tipos de casos permite criar eventos e serviços direcionados, oferecendo um atendimento mais personalizado.
 SELECT 
-    (SELECT COUNT(*) FROM E_Assoc1_Inscricao WHERE Frequencia = TRUE) * 100.0 / 
-    (SELECT COUNT(*) FROM E_Assoc1_Inscricao) AS porcentagem_frequencia_true;
--- qual o  % de pacientes satisfeitos com os eventos da clínica? isso tem tudo a ver com a pergunta 1
-SELECT 
-    (SELECT COUNT(*) AS satisfeitos FROM E_Assoc1_Inscricao WHERE Satisfacao >= 4) * 100.0 / 
-    (SELECT COUNT(*) AS total_inscritos FROM E_Assoc1_Inscricao) AS porcentagem_satisfacao;
--- taxa de sucesso/retencao
+    Paciente.Caso, 
+    COUNT(*) AS Total_Pacientes
+FROM 
+    Paciente
+GROUP BY 
+    Paciente.Caso
+ORDER BY 
+    Total_Pacientes DESC;
 -- quantos médicos da florence são especializados em casos mais raros?
 -- qual o impacto dos eventos e campanhas no aumento de pedidos (colocar pacientes que frequentam mtos eventos como os q mais pedem e consultam
