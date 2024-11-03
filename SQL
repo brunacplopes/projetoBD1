@@ -240,7 +240,7 @@ VALUES
 
 SELECT COUNT(*) AS total_Pessoas 
 FROM Pessoa;
--- PORQUE ESCOLHER A FLORENCE ->
+
 -- 1 Qual o percentual de inscritos que realmente foram aos últimos eventos? isso mostra uma assiduidade dos inscritos.
 SELECT 
     (SELECT COUNT(*) FROM E_Assoc_Inscricao WHERE Frequencia = TRUE) * 100.0 / 
@@ -253,7 +253,7 @@ SELECT
 SELECT 
     (SELECT COUNT(*) AS satisfeitos FROM Medico WHERE satisfacao_Medico >= 4) * 100.0 / 
     (SELECT COUNT(*) AS total_Medicos FROM Medico) AS porcentagem_satisfacao_medicos;
--- NOSSO MARKETING E ESTRATÉGIAS
+-- MARKETING E ESTRATÉGIAS
 -- 4 Qual é o período do ano com maior número de inscrições nos eventos
 SELECT strftime('%m', fk_Evento_Data_Evento) AS Mes,
     COUNT(*) AS total_Inscricoes
@@ -296,3 +296,17 @@ GROUP BY
     fk_Data_Data_PK
 ORDER BY 
     fk_Data_Data_PK;
+-- 9 Qual foi o valor médio dos pedidos com delivery? Isso ajuda a entender se os pedidos com entrega têm um valor maior ou menor em média, o que pode orientar a logística e campanhas de entrega.
+SELECT 
+    AVG(Preco_t) AS Valor_Medio_Delivery
+FROM 
+    Pedido
+WHERE 
+    Delivery = TRUE;
+-- 10 Qual foi o valor médio dos pedidos sem delivery? Isso ajuda a comparar o valor médio dos pedidos realizados sem entrega com os de entrega, identificando se clientes que optam por retirada tendem a gastar mais ou menos. Pode ser útil para campanhas voltadas a diferentes modalidades de compra.
+SELECT 
+    AVG(Preco_t) AS Valor_Medio_Delivery
+FROM 
+    Pedido
+WHERE 
+    Delivery = true;
