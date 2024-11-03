@@ -272,5 +272,27 @@ GROUP BY
     Paciente.Caso
 ORDER BY 
     Total_Pacientes DESC;
--- quantos médicos da florence são especializados em casos mais raros?
--- qual o impacto dos eventos e campanhas no aumento de pedidos (colocar pacientes que frequentam mtos eventos como os q mais pedem e consultam
+-- 7 Quais especialidades médicas têm a maior demanda de consultas? Identificar as especialidades mais procuradas ajuda a entender a demanda e pode ser útil para promover consultas ou oferecer pacotes de serviços.
+SELECT 
+    Especialidade, 
+    (SELECT COUNT(*) 
+     FROM Ent_Consulta_Consulta 
+     WHERE Ent_Consulta_Consulta.fk_Medico_CRM = Medico.CRM) AS Total_Consultas
+FROM 
+    Medico
+GROUP BY 
+    Especialidade
+ORDER BY 
+    Total_Consultas DESC;
+-- 8 Os eventos influenciam nos aumento de pedidos? Análise de Vendas Durante e Após Eventos Compare as vendas (pedidos) realizadas antes, durante e depois dos eventos. Isso ajuda a identificar picos de vendas associados aos eventos.
+SELECT 
+    fk_Data_Data_PK,
+    COUNT(ID_Pedido) AS Total_Pedidos
+FROM 
+    Pedido
+WHERE 
+    fk_Data_Data_PK BETWEEN '2024-05-10' AND '2024-05-25' -- 10 dias antes e depois de um evento(precisa inserir pedidos)
+GROUP BY 
+    fk_Data_Data_PK
+ORDER BY 
+    fk_Data_Data_PK;
