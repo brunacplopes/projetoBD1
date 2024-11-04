@@ -43,7 +43,10 @@ Montamos nosso logotipo, com tons pastéis brancos e azuis para referir a paz e 
 Esse trabalho foi feito por: Adele Brovelli, Bruna Lopes, Maria Eduarda Carvalho e Sérgio Melo
  
 # divisão entre o grupo 
-Adele Brovelli: ddl, dml e dql dos codigos 
-Bruna Lopes: preparação do github e slides
-Maria Eduarda Carvalho: escolha das perguntas agregadoras
+Adele Brovelli: ddl, dml e dql dos codigos.
+
+Bruna Lopes: preparação do github e slides.
+
+Maria Eduarda Carvalho: escolha das perguntas agregadoras.
+
 Sérgio Melo: escolha do diferencial. 
