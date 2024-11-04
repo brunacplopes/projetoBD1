@@ -5,10 +5,10 @@ Criamos um banco de dados unificado para uma cliníca fictícia de reabilitaçã
 
 Os pacientes com condições psiquiátricas muitas vezes precisam de estímulos que vão além do tratamento médico tradicional. Por isso, nossa plataforma oferece eventos como sessões de meditação, palestras sobre técnicas de manejo de estresse e oficinas de culinária saudável. Tudo isso para garantir um ambiente de suporte completo ao bem-estar mental e emocional, em um espaço seguro dentro do hospital."
 # Modelo MER
-blob:https://web.whatsapp.com/f08f0875-65f1-48ce-b3ba-47d38e50e8a5![image](https://github.com/user-attachments/assets/b5c86652-c478-4364-934b-0348322e2d7c)
+![WhatsApp Image 2024-11-03 at 16 34 33-2](https://github.com/user-attachments/assets/23a26584-4679-4b82-a7d0-687257cb1cf3)
 
 # Modelo MR
-blob:https://web.whatsapp.com/f8f1b6d8-4c88-4e55-891d-12e64483e709![image](https://github.com/user-attachments/assets/e25285b9-ee9b-477c-89c7-0ca0fb6e85b9)
+![WhatsApp Image 2024-11-03 at 16 34 33](https://github.com/user-attachments/assets/178d1e11-d7df-455b-814f-5ff5b6ffabf2)
 
 # 10 perguntas
 O projeto requeriu que fizéssemos 10 perguntas que agreguem valor à equipe baseados no banco de dados. Foram elas: 
