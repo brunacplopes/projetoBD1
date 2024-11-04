@@ -5,10 +5,10 @@ Criamos um banco de dados unificado para uma cliníca fictícia de reabilitaçã
 
 Os pacientes com condições psiquiátricas muitas vezes precisam de estímulos que vão além do tratamento médico tradicional. Por isso, nossa plataforma oferece eventos como sessões de meditação, palestras sobre técnicas de manejo de estresse e oficinas de culinária saudável. Tudo isso para garantir um ambiente de suporte completo ao bem-estar mental e emocional, em um espaço seguro dentro do hospital."
 # Modelo MER
-<img width="887" alt="Captura de Tela 2024-09-25 às 22 56 28" src="https://github.com/user-attachments/assets/90148f3e-b5a2-4085-86e8-bd0c26bcad8f">
+blob:https://web.whatsapp.com/f08f0875-65f1-48ce-b3ba-47d38e50e8a5![image](https://github.com/user-attachments/assets/b5c86652-c478-4364-934b-0348322e2d7c)
 
 # Modelo MR
-<img width="814" alt="Captura de Tela 2024-09-25 às 22 56 06" src="https://github.com/user-attachments/assets/8d57e55d-9907-48db-9b82-495159a07ef7">
+blob:https://web.whatsapp.com/f8f1b6d8-4c88-4e55-891d-12e64483e709![image](https://github.com/user-attachments/assets/e25285b9-ee9b-477c-89c7-0ca0fb6e85b9)
 
 # 10 perguntas
 O projeto requeriu que fizéssemos 10 perguntas que agreguem valor à equipe baseados no banco de dados. Foram elas: 
@@ -27,8 +27,12 @@ O projeto requeriu que fizéssemos 10 perguntas que agreguem valor à equipe bas
 
 7 Quais especialidades médicas têm a maior demanda de consultas? Identificar as especialidades mais procuradas ajuda a entender a demanda e pode ser útil para promover consultas ou oferecer pacotes de serviços.
 
-8 Os eventos influenciam nos aumento de pedidos? Análise de Vendas Durante e Após Eventos Compare as vendas (pedidos) realizadas antes, durante e depois dos eventos. Isso ajuda a identificar picos de vendas associados aos eventos.
- 
+8 Os eventos influenciam nos aumento de pedidos? Compara as vendas (pedidos) realizadas antes, durante e depois dos eventos. Isso ajuda a identificar picos de vendas associados aos eventos.
+
+9 Qual foi o valor médio dos pedidos com delivery? Isso ajuda a entender se os pedidos com entrega têm um valor maior ou menor em média, o que pode orientar a logística e campanhas de entrega.
+
+10 Qual foi o valor médio dos pedidos sem delivery? Isso ajuda a comparar o valor médio dos pedidos realizados sem entrega com os de entrega, identificando se clientes que optam por retirada tendem a gastar mais ou menos. Pode ser útil para campanhas voltadas a diferentes modalidades de compra.
+
 # Atributos adicionados 
 • satisfacao_Medico(serve pra armazenar a pesquisa de satisfacao se os medicos gostam de trabalhar la c uma nota média de 1 a 5)
 •Frequencia(booleano que guarda se o inscrito esteve presente ou não através do escaneamento do ingresso
@@ -39,7 +43,7 @@ Montamos nosso logotipo, com tons pastéis brancos e azuis para referir a paz e 
 Esse trabalho foi feito por: Adele Brovelli, Bruna Lopes, Maria Eduarda Carvalho e Sérgio Melo
  
 # divisão entre o grupo 
-Adele Brovelli: testes dos codigos 
-Bruna Lopes: github e slides
-Maria Eduarda Carvalho: perguntas
-Sérgio Melo: diferencial. 
+Adele Brovelli: ddl, dml e dql dos codigos 
+Bruna Lopes: preparação do github e slides
+Maria Eduarda Carvalho: escolha das perguntas agregadoras
+Sérgio Melo: escolha do diferencial. 
